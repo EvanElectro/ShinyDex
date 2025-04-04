@@ -1,0 +1,572 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2575.3">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  </style>
+</head>
+<body>
+<p class="p1">&lt;!DOCTYPE html&gt;</p>
+<p class="p1">&lt;html lang="en"&gt;</p>
+<p class="p1">&lt;head&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta charset="UTF-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;title&gt;Pokédex Gen I - Animated Sprites&lt;/title&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;style&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* Basic Reset */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>* { box-sizing: border-box; margin: 0; padding: 0; }</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>body {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-family: 'Arial', sans-serif;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #d1d1d1;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 20px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>justify-content: center;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>align-items: flex-start;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>min-height: 100vh;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* Pokedex Device Styling */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.pokedex-device {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #dc0a2d;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 20px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 25px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: 5px 5px 15px rgba(0,0,0,0.4), inset 0 0 10px rgba(0,0,0,0.3);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border: 3px solid #a0001d;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>max-width: 1400px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>width: 100%;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>flex-direction: column;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>max-height: 95vh; /* Limit overall height */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.pokedex-header { display: flex; align-items: center; margin-bottom: 15px; padding-bottom: 15px; border-bottom: 3px solid #a0001d; flex-shrink: 0; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.pokedex-lights { display: flex; gap: 15px; margin-right: 20px; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.light { width: 40px; height: 40px; border-radius: 50%; border: 3px solid #333; box-shadow: inset 0 0 8px rgba(0,0,0,0.5); }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.light.blue { background-color: #3ca8ff; } .light.red { background-color: #ff5050; } .light.yellow { background-color: #ffdd57; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>h1 { text-align: center; color: #fff; margin: 0 auto; font-size: 2em; text-shadow: 2px 2px 3px #a0001d; }</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* Controls Area (Search + Buttons) */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.controls-area {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>flex-wrap: wrap; /* Allow buttons to wrap on smaller screens */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>gap: 10px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 15px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 0 5px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>flex-shrink: 0;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.search-container {</p>
+<p class="p1"><span class="Apple-converted-space">             </span>flex-grow: 1; /* Allow search to take available space */</p>
+<p class="p1"><span class="Apple-converted-space">             </span>min-width: 200px; /* Ensure search has minimum width */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>#search-bar {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>width: 100%;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 10px 15px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 1em;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 20px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border: 2px solid #a0001d;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #f0f0f0;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: #333;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: inset 1px 1px 3px rgba(0,0,0,0.2);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>#search-bar::placeholder { color: #888; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>#search-bar::-webkit-search-cancel-button { -webkit-appearance: none; height: 16px; width: 16px; display: inline-block; margin-left: 5px; background-image: url("data:image/svg+xml;utf8,&lt;svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23a0001d'&gt;&lt;path d='M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z'/&gt;&lt;/svg&gt;"); background-size: 16px 16px; cursor: pointer; }</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* Control Buttons Styling */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.control-button {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 10px 15px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 0.9em;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-weight: bold;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 15px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border: 2px solid #a0001d;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #ffcc00; /* Yellow button */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: #333;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>cursor: pointer;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: 1px 1px 3px rgba(0,0,0,0.2);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transition: background-color 0.2s ease;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>white-space: nowrap; /* Prevent buttons text wrapping */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.control-button:hover { background-color: #e6b800; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.control-button:active { background-color: #cca300; }</p>
+<p class="p2"><br></p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* Grid Container */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.pokedex-grid-container {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #444;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 10px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 15px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>overflow-y: auto;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border: 2px solid #222;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: inset 0 0 10px rgba(0,0,0,0.5);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>flex-grow: 1;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>min-height: 200px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* Custom Scrollbar */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.pokedex-grid-container::-webkit-scrollbar { width: 12px; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.pokedex-grid-container::-webkit-scrollbar-track { background: #555; border-radius: 10px; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.pokedex-grid-container::-webkit-scrollbar-thumb { background-color: #dc0a2d; border-radius: 10px; border: 3px solid #555; }</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.pokedex-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 15px; }</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>#no-results { color: #fff; text-align: center; padding: 20px; font-size: 1.2em; display: none; }</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* Pokemon Card Styling */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.pokemon-card {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #9fd0a0; border-radius: 8px; padding: 10px; text-align: center;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: inset 0 0 5px rgba(0,0,0,0.3); border: 2px solid #5a7f5b;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: flex; flex-direction: column; align-items: center; color: #333;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transition: background-color 0.2s ease, transform 0.1s ease; /* Added transform transition */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.pokemon-card:hover { background-color: #b1e0b2; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* Style for hidden cards */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.pokemon-card.hidden { display: none; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* Add slight scale effect on hover for visual feedback */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.pokemon-card:hover { transform: scale(1.02); z-index: 10;}</p>
+<p class="p2"><br></p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.pokemon-header-info { display: flex; justify-content: space-between; align-items: center; width: 100%; margin-bottom: 5px; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.pokemon-name { font-size: 1.2em; font-weight: bold; color: #2b5a2c; text-transform: capitalize; text-align: left; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.pokemon-id { font-size: 0.8em; color: #446a45; font-weight: bold; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.pokemon-sprite-container { position: relative; margin-bottom: 10px; background-color: rgba(255, 255, 255, 0.3); border-radius: 5px; padding: 5px; border: 1px solid #88b889; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.pokemon-sprite { width: 96px; height: 96px; image-rendering: pixelated; display: block; margin: 0 auto; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.shiny-toggle { position: absolute; bottom: 5px; right: 5px; padding: 3px 6px; font-size: 0.7em; background-color: #ffcc00; color: #333; border: 1px solid #cca300; border-radius: 5px; cursor: pointer; font-weight: bold; box-shadow: 1px 1px 2px rgba(0,0,0,0.2); transition: background-color 0.2s ease; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.shiny-toggle:hover { background-color: #e6b800; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.shiny-toggle.active { background-color: #3ca8ff; color: white; border-color: #2a7ab0; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.pokemon-types { margin-bottom: 10px; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.pokemon-types span {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: inline-block; padding: 4px 10px; margin: 2px 3px; border-radius: 12px; color: #fff;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 0.8em; font-weight: bold; text-shadow: 1px 1px 1px rgba(0,0,0,0.5); border: 1px solid rgba(0,0,0,0.2);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>cursor: pointer; /* Make types clickable */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transition: transform 0.1s ease;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.pokemon-types span:hover { transform: scale(1.1); } /* Hover effect for types */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.pokemon-types span.active-filter { /* Style for the currently active filter type */</p>
+<p class="p1"><span class="Apple-converted-space">             </span>box-shadow: 0 0 0 3px #fff, 0 0 0 5px #ffcc00; /* Highlight active type filter */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* Type Colors */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.type-normal { background-color: #A8A77A; } .type-fire { background-color: #EE8130; } .type-water { background-color: #6390F0; } .type-electric { background-color: #F7D02C; } .type-grass { background-color: #7AC74C; } .type-ice { background-color: #96D9D6; } .type-fighting { background-color: #C22E28; } .type-poison { background-color: #A33EA1; } .type-ground { background-color: #E2BF65; } .type-flying { background-color: #A98FF3; } .type-psychic { background-color: #F95587; } .type-bug { background-color: #A6B91A; } .type-rock { background-color: #B6A136; } .type-ghost { background-color: #735797; } .type-dragon { background-color: #6F35FC; } .type-dark { background-color: #705746; } .type-steel { background-color: #B7B7CE; } .type-fairy { background-color: #D685AD; }</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.pokemon-stats { list-style: none; padding: 0; margin: 0; width: 90%; font-size: 0.8em; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.pokemon-stats li { display: flex; justify-content: space-between; padding: 2px 0; border-bottom: 1px solid #88b889; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.pokemon-stats li:last-child { border-bottom: none; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.pokemon-stats span:first-child { font-weight: bold; color: #446a45; text-align: left; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.pokemon-stats span:last-child { font-weight: bold; color: #2b5a2c; text-align: right; }</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* Footer/Info */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>footer { text-align: center; margin-top: 20px; padding-top: 15px; border-top: 3px solid #a0001d; font-size: 0.8em; color: #f0f0f0; flex-shrink: 0; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>footer a { color: #ffdd57; text-decoration: none; } footer a:hover { text-decoration: underline; }</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/style&gt;</p>
+<p class="p1">&lt;/head&gt;</p>
+<p class="p1">&lt;body&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="pokedex-device"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="pokedex-header"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="pokedex-lights"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="light blue"&gt;&lt;/div&gt; &lt;div class="light red"&gt;&lt;/div&gt; &lt;div class="light yellow"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;h1&gt;Pokédex - Generation I&lt;/h1&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="controls-area"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="search-container"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;input type="search" id="search-bar" placeholder="Search by Name or ID..."&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;button id="show-all-btn" class="control-button"&gt;Show All&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;button id="random-btn" class="control-button"&gt;Random Pokémon&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="pokedex-grid-container"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">             </span>&lt;div id="no-results"&gt;No Pokémon found matching your criteria.&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div id="pokedex-grid" class="pokedex-grid"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;footer&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>Data sourced from various Pokémon resources. Animated sprites from &lt;a href="https://play.pokemonshowdown.com/" target="_blank" rel="noopener noreferrer"&gt;Pokémon Showdown&lt;/a&gt;.</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;br&gt; This is a fan-made project for informational purposes. Pokémon © Nintendo, Creatures Inc., GAME FREAK inc.</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/footer&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const pokemonData = [</p>
+<p class="p1"><span class="Apple-converted-space">            </span>// ... (Previous 150 Pokémon data entries) ...</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 1, name: "Bulbasaur", types: ["Grass", "Poison"], stats: { hp: 45, attack: 49, defense: 49, sp_attack: 65, sp_defense: 65, speed: 45 }, sprite_name: "bulbasaur" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 2, name: "Ivysaur", types: ["Grass", "Poison"], stats: { hp: 60, attack: 62, defense: 63, sp_attack: 80, sp_defense: 80, speed: 60 }, sprite_name: "ivysaur" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 3, name: "Venusaur", types: ["Grass", "Poison"], stats: { hp: 80, attack: 82, defense: 83, sp_attack: 100, sp_defense: 100, speed: 80 }, sprite_name: "venusaur" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 4, name: "Charmander", types: ["Fire"], stats: { hp: 39, attack: 52, defense: 43, sp_attack: 60, sp_defense: 50, speed: 65 }, sprite_name: "charmander" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 5, name: "Charmeleon", types: ["Fire"], stats: { hp: 58, attack: 64, defense: 58, sp_attack: 80, sp_defense: 65, speed: 80 }, sprite_name: "charmeleon" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 6, name: "Charizard", types: ["Fire", "Flying"], stats: { hp: 78, attack: 84, defense: 78, sp_attack: 109, sp_defense: 85, speed: 100 }, sprite_name: "charizard" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 7, name: "Squirtle", types: ["Water"], stats: { hp: 44, attack: 48, defense: 65, sp_attack: 50, sp_defense: 64, speed: 43 }, sprite_name: "squirtle" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 8, name: "Wartortle", types: ["Water"], stats: { hp: 59, attack: 63, defense: 80, sp_attack: 65, sp_defense: 80, speed: 58 }, sprite_name: "wartortle" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 9, name: "Blastoise", types: ["Water"], stats: { hp: 79, attack: 83, defense: 100, sp_attack: 85, sp_defense: 105, speed: 78 }, sprite_name: "blastoise" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 10, name: "Caterpie", types: ["Bug"], stats: { hp: 45, attack: 30, defense: 35, sp_attack: 20, sp_defense: 20, speed: 45 }, sprite_name: "caterpie" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 11, name: "Metapod", types: ["Bug"], stats: { hp: 50, attack: 20, defense: 55, sp_attack: 25, sp_defense: 25, speed: 30 }, sprite_name: "metapod" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 12, name: "Butterfree", types: ["Bug", "Flying"], stats: { hp: 60, attack: 45, defense: 50, sp_attack: 90, sp_defense: 80, speed: 70 }, sprite_name: "butterfree" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 13, name: "Weedle", types: ["Bug", "Poison"], stats: { hp: 40, attack: 35, defense: 30, sp_attack: 20, sp_defense: 20, speed: 50 }, sprite_name: "weedle" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 14, name: "Kakuna", types: ["Bug", "Poison"], stats: { hp: 45, attack: 25, defense: 50, sp_attack: 25, sp_defense: 25, speed: 35 }, sprite_name: "kakuna" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 15, name: "Beedrill", types: ["Bug", "Poison"], stats: { hp: 65, attack: 90, defense: 40, sp_attack: 45, sp_defense: 80, speed: 75 }, sprite_name: "beedrill" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 16, name: "Pidgey", types: ["Normal", "Flying"], stats: { hp: 40, attack: 45, defense: 40, sp_attack: 35, sp_defense: 35, speed: 56 }, sprite_name: "pidgey" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 17, name: "Pidgeotto", types: ["Normal", "Flying"], stats: { hp: 63, attack: 60, defense: 55, sp_attack: 50, sp_defense: 50, speed: 71 }, sprite_name: "pidgeotto" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 18, name: "Pidgeot", types: ["Normal", "Flying"], stats: { hp: 83, attack: 80, defense: 75, sp_attack: 70, sp_defense: 70, speed: 101 }, sprite_name: "pidgeot" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 19, name: "Rattata", types: ["Normal"], stats: { hp: 30, attack: 56, defense: 35, sp_attack: 25, sp_defense: 35, speed: 72 }, sprite_name: "rattata" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 20, name: "Raticate", types: ["Normal"], stats: { hp: 55, attack: 81, defense: 60, sp_attack: 50, sp_defense: 70, speed: 97 }, sprite_name: "raticate" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 21, name: "Spearow", types: ["Normal", "Flying"], stats: { hp: 40, attack: 60, defense: 30, sp_attack: 31, sp_defense: 31, speed: 70 }, sprite_name: "spearow" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 22, name: "Fearow", types: ["Normal", "Flying"], stats: { hp: 65, attack: 90, defense: 65, sp_attack: 61, sp_defense: 61, speed: 100 }, sprite_name: "fearow" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 23, name: "Ekans", types: ["Poison"], stats: { hp: 35, attack: 60, defense: 44, sp_attack: 40, sp_defense: 54, speed: 55 }, sprite_name: "ekans" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 24, name: "Arbok", types: ["Poison"], stats: { hp: 60, attack: 95, defense: 69, sp_attack: 65, sp_defense: 79, speed: 80 }, sprite_name: "arbok" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 25, name: "Pikachu", types: ["Electric"], stats: { hp: 35, attack: 55, defense: 40, sp_attack: 50, sp_defense: 50, speed: 90 }, sprite_name: "pikachu" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 26, name: "Raichu", types: ["Electric"], stats: { hp: 60, attack: 90, defense: 55, sp_attack: 90, sp_defense: 80, speed: 110 }, sprite_name: "raichu" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 27, name: "Sandshrew", types: ["Ground"], stats: { hp: 50, attack: 75, defense: 85, sp_attack: 20, sp_defense: 30, speed: 40 }, sprite_name: "sandshrew" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 28, name: "Sandslash", types: ["Ground"], stats: { hp: 75, attack: 100, defense: 110, sp_attack: 45, sp_defense: 55, speed: 65 }, sprite_name: "sandslash" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 29, name: "Nidoran♀", types: ["Poison"], stats: { hp: 55, attack: 47, defense: 52, sp_attack: 40, sp_defense: 40, speed: 41 }, sprite_name: "nidoranf" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 30, name: "Nidorina", types: ["Poison"], stats: { hp: 70, attack: 62, defense: 67, sp_attack: 55, sp_defense: 55, speed: 56 }, sprite_name: "nidorina" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 31, name: "Nidoqueen", types: ["Poison", "Ground"], stats: { hp: 90, attack: 92, defense: 87, sp_attack: 75, sp_defense: 85, speed: 76 }, sprite_name: "nidoqueen" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 32, name: "Nidoran♂", types: ["Poison"], stats: { hp: 46, attack: 57, defense: 40, sp_attack: 40, sp_defense: 40, speed: 50 }, sprite_name: "nidoranm" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 33, name: "Nidorino", types: ["Poison"], stats: { hp: 61, attack: 72, defense: 57, sp_attack: 55, sp_defense: 55, speed: 65 }, sprite_name: "nidorino" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 34, name: "Nidoking", types: ["Poison", "Ground"], stats: { hp: 81, attack: 102, defense: 77, sp_attack: 85, sp_defense: 75, speed: 85 }, sprite_name: "nidoking" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 35, name: "Clefairy", types: ["Fairy"], stats: { hp: 70, attack: 45, defense: 48, sp_attack: 60, sp_defense: 65, speed: 35 }, sprite_name: "clefairy" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 36, name: "Clefable", types: ["Fairy"], stats: { hp: 95, attack: 70, defense: 73, sp_attack: 95, sp_defense: 90, speed: 60 }, sprite_name: "clefable" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 37, name: "Vulpix", types: ["Fire"], stats: { hp: 38, attack: 41, defense: 40, sp_attack: 50, sp_defense: 65, speed: 65 }, sprite_name: "vulpix" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 38, name: "Ninetales", types: ["Fire"], stats: { hp: 73, attack: 76, defense: 75, sp_attack: 81, sp_defense: 100, speed: 100 }, sprite_name: "ninetales" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 39, name: "Jigglypuff", types: ["Normal", "Fairy"], stats: { hp: 115, attack: 45, defense: 20, sp_attack: 45, sp_defense: 25, speed: 20 }, sprite_name: "jigglypuff" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 40, name: "Wigglytuff", types: ["Normal", "Fairy"], stats: { hp: 140, attack: 70, defense: 45, sp_attack: 85, sp_defense: 50, speed: 45 }, sprite_name: "wigglytuff" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 41, name: "Zubat", types: ["Poison", "Flying"], stats: { hp: 40, attack: 45, defense: 35, sp_attack: 30, sp_defense: 40, speed: 55 }, sprite_name: "zubat" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 42, name: "Golbat", types: ["Poison", "Flying"], stats: { hp: 75, attack: 80, defense: 70, sp_attack: 65, sp_defense: 75, speed: 90 }, sprite_name: "golbat" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 43, name: "Oddish", types: ["Grass", "Poison"], stats: { hp: 45, attack: 50, defense: 55, sp_attack: 75, sp_defense: 65, speed: 30 }, sprite_name: "oddish" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 44, name: "Gloom", types: ["Grass", "Poison"], stats: { hp: 60, attack: 65, defense: 70, sp_attack: 85, sp_defense: 75, speed: 40 }, sprite_name: "gloom" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 45, name: "Vileplume", types: ["Grass", "Poison"], stats: { hp: 75, attack: 80, defense: 85, sp_attack: 110, sp_defense: 90, speed: 50 }, sprite_name: "vileplume" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 46, name: "Paras", types: ["Bug", "Grass"], stats: { hp: 35, attack: 70, defense: 55, sp_attack: 45, sp_defense: 55, speed: 25 }, sprite_name: "paras" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 47, name: "Parasect", types: ["Bug", "Grass"], stats: { hp: 60, attack: 95, defense: 80, sp_attack: 60, sp_defense: 80, speed: 30 }, sprite_name: "parasect" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 48, name: "Venonat", types: ["Bug", "Poison"], stats: { hp: 60, attack: 55, defense: 50, sp_attack: 40, sp_defense: 55, speed: 45 }, sprite_name: "venonat" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 49, name: "Venomoth", types: ["Bug", "Poison"], stats: { hp: 70, attack: 65, defense: 60, sp_attack: 90, sp_defense: 75, speed: 90 }, sprite_name: "venomoth" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 50, name: "Diglett", types: ["Ground"], stats: { hp: 10, attack: 55, defense: 25, sp_attack: 35, sp_defense: 45, speed: 95 }, sprite_name: "diglett" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 51, name: "Dugtrio", types: ["Ground"], stats: { hp: 35, attack: 100, defense: 50, sp_attack: 50, sp_defense: 70, speed: 120 }, sprite_name: "dugtrio" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 52, name: "Meowth", types: ["Normal"], stats: { hp: 40, attack: 45, defense: 35, sp_attack: 40, sp_defense: 40, speed: 90 }, sprite_name: "meowth" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 53, name: "Persian", types: ["Normal"], stats: { hp: 65, attack: 70, defense: 60, sp_attack: 65, sp_defense: 65, speed: 115 }, sprite_name: "persian" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 54, name: "Psyduck", types: ["Water"], stats: { hp: 50, attack: 52, defense: 48, sp_attack: 65, sp_defense: 50, speed: 55 }, sprite_name: "psyduck" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 55, name: "Golduck", types: ["Water"], stats: { hp: 80, attack: 82, defense: 78, sp_attack: 95, sp_defense: 80, speed: 85 }, sprite_name: "golduck" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 56, name: "Mankey", types: ["Fighting"], stats: { hp: 40, attack: 80, defense: 35, sp_attack: 35, sp_defense: 45, speed: 70 }, sprite_name: "mankey" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 57, name: "Primeape", types: ["Fighting"], stats: { hp: 65, attack: 105, defense: 60, sp_attack: 60, sp_defense: 70, speed: 95 }, sprite_name: "primeape" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 58, name: "Growlithe", types: ["Fire"], stats: { hp: 55, attack: 70, defense: 45, sp_attack: 70, sp_defense: 50, speed: 60 }, sprite_name: "growlithe" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 59, name: "Arcanine", types: ["Fire"], stats: { hp: 90, attack: 110, defense: 80, sp_attack: 100, sp_defense: 80, speed: 95 }, sprite_name: "arcanine" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 60, name: "Poliwag", types: ["Water"], stats: { hp: 40, attack: 50, defense: 40, sp_attack: 40, sp_defense: 40, speed: 90 }, sprite_name: "poliwag" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 61, name: "Poliwhirl", types: ["Water"], stats: { hp: 65, attack: 65, defense: 65, sp_attack: 50, sp_defense: 50, speed: 90 }, sprite_name: "poliwhirl" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 62, name: "Poliwrath", types: ["Water", "Fighting"], stats: { hp: 90, attack: 95, defense: 95, sp_attack: 70, sp_defense: 90, speed: 70 }, sprite_name: "poliwrath" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 63, name: "Abra", types: ["Psychic"], stats: { hp: 25, attack: 20, defense: 15, sp_attack: 105, sp_defense: 55, speed: 90 }, sprite_name: "abra" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 64, name: "Kadabra", types: ["Psychic"], stats: { hp: 40, attack: 35, defense: 30, sp_attack: 120, sp_defense: 70, speed: 105 }, sprite_name: "kadabra" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 65, name: "Alakazam", types: ["Psychic"], stats: { hp: 55, attack: 50, defense: 45, sp_attack: 135, sp_defense: 95, speed: 120 }, sprite_name: "alakazam" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 66, name: "Machop", types: ["Fighting"], stats: { hp: 70, attack: 80, defense: 50, sp_attack: 35, sp_defense: 35, speed: 35 }, sprite_name: "machop" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 67, name: "Machoke", types: ["Fighting"], stats: { hp: 80, attack: 100, defense: 70, sp_attack: 50, sp_defense: 60, speed: 45 }, sprite_name: "machoke" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 68, name: "Machamp", types: ["Fighting"], stats: { hp: 90, attack: 130, defense: 80, sp_attack: 65, sp_defense: 85, speed: 55 }, sprite_name: "machamp" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 69, name: "Bellsprout", types: ["Grass", "Poison"], stats: { hp: 50, attack: 75, defense: 35, sp_attack: 70, sp_defense: 30, speed: 40 }, sprite_name: "bellsprout" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 70, name: "Weepinbell", types: ["Grass", "Poison"], stats: { hp: 65, attack: 90, defense: 50, sp_attack: 85, sp_defense: 45, speed: 55 }, sprite_name: "weepinbell" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 71, name: "Victreebel", types: ["Grass", "Poison"], stats: { hp: 80, attack: 105, defense: 65, sp_attack: 100, sp_defense: 70, speed: 70 }, sprite_name: "victreebel" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 72, name: "Tentacool", types: ["Water", "Poison"], stats: { hp: 40, attack: 40, defense: 35, sp_attack: 50, sp_defense: 100, speed: 70 }, sprite_name: "tentacool" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 73, name: "Tentacruel", types: ["Water", "Poison"], stats: { hp: 80, attack: 70, defense: 65, sp_attack: 80, sp_defense: 120, speed: 100 }, sprite_name: "tentacruel" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 74, name: "Geodude", types: ["Rock", "Ground"], stats: { hp: 40, attack: 80, defense: 100, sp_attack: 30, sp_defense: 30, speed: 20 }, sprite_name: "geodude" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 75, name: "Graveler", types: ["Rock", "Ground"], stats: { hp: 55, attack: 95, defense: 115, sp_attack: 45, sp_defense: 45, speed: 35 }, sprite_name: "graveler" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 76, name: "Golem", types: ["Rock", "Ground"], stats: { hp: 80, attack: 120, defense: 130, sp_attack: 55, sp_defense: 65, speed: 45 }, sprite_name: "golem" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 77, name: "Ponyta", types: ["Fire"], stats: { hp: 50, attack: 85, defense: 55, sp_attack: 65, sp_defense: 65, speed: 90 }, sprite_name: "ponyta" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 78, name: "Rapidash", types: ["Fire"], stats: { hp: 65, attack: 100, defense: 70, sp_attack: 80, sp_defense: 80, speed: 105 }, sprite_name: "rapidash" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 79, name: "Slowpoke", types: ["Water", "Psychic"], stats: { hp: 90, attack: 65, defense: 65, sp_attack: 40, sp_defense: 40, speed: 15 }, sprite_name: "slowpoke" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 80, name: "Slowbro", types: ["Water", "Psychic"], stats: { hp: 95, attack: 75, defense: 110, sp_attack: 100, sp_defense: 80, speed: 30 }, sprite_name: "slowbro" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 81, name: "Magnemite", types: ["Electric", "Steel"], stats: { hp: 25, attack: 35, defense: 70, sp_attack: 95, sp_defense: 55, speed: 45 }, sprite_name: "magnemite" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 82, name: "Magneton", types: ["Electric", "Steel"], stats: { hp: 50, attack: 60, defense: 95, sp_attack: 120, sp_defense: 70, speed: 70 }, sprite_name: "magneton" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 83, name: "Farfetch'd", types: ["Normal", "Flying"], stats: { hp: 52, attack: 90, defense: 55, sp_attack: 58, sp_defense: 62, speed: 60 }, sprite_name: "farfetchd" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 84, name: "Doduo", types: ["Normal", "Flying"], stats: { hp: 35, attack: 85, defense: 45, sp_attack: 35, sp_defense: 35, speed: 75 }, sprite_name: "doduo" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 85, name: "Dodrio", types: ["Normal", "Flying"], stats: { hp: 60, attack: 110, defense: 70, sp_attack: 60, sp_defense: 60, speed: 110 }, sprite_name: "dodrio" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 86, name: "Seel", types: ["Water"], stats: { hp: 65, attack: 45, defense: 55, sp_attack: 45, sp_defense: 70, speed: 45 }, sprite_name: "seel" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 87, name: "Dewgong", types: ["Water", "Ice"], stats: { hp: 90, attack: 70, defense: 80, sp_attack: 70, sp_defense: 95, speed: 70 }, sprite_name: "dewgong" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 88, name: "Grimer", types: ["Poison"], stats: { hp: 80, attack: 80, defense: 50, sp_attack: 40, sp_defense: 50, speed: 25 }, sprite_name: "grimer" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 89, name: "Muk", types: ["Poison"], stats: { hp: 105, attack: 105, defense: 75, sp_attack: 65, sp_defense: 100, speed: 50 }, sprite_name: "muk" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 90, name: "Shellder", types: ["Water"], stats: { hp: 30, attack: 65, defense: 100, sp_attack: 45, sp_defense: 25, speed: 40 }, sprite_name: "shellder" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 91, name: "Cloyster", types: ["Water", "Ice"], stats: { hp: 50, attack: 95, defense: 180, sp_attack: 85, sp_defense: 45, speed: 70 }, sprite_name: "cloyster" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 92, name: "Gastly", types: ["Ghost", "Poison"], stats: { hp: 30, attack: 35, defense: 30, sp_attack: 100, sp_defense: 35, speed: 80 }, sprite_name: "gastly" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 93, name: "Haunter", types: ["Ghost", "Poison"], stats: { hp: 45, attack: 50, defense: 45, sp_attack: 115, sp_defense: 55, speed: 95 }, sprite_name: "haunter" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 94, name: "Gengar", types: ["Ghost", "Poison"], stats: { hp: 60, attack: 65, defense: 60, sp_attack: 130, sp_defense: 75, speed: 110 }, sprite_name: "gengar" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 95, name: "Onix", types: ["Rock", "Ground"], stats: { hp: 35, attack: 45, defense: 160, sp_attack: 30, sp_defense: 45, speed: 70 }, sprite_name: "onix" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 96, name: "Drowzee", types: ["Psychic"], stats: { hp: 60, attack: 48, defense: 45, sp_attack: 43, sp_defense: 90, speed: 42 }, sprite_name: "drowzee" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 97, name: "Hypno", types: ["Psychic"], stats: { hp: 85, attack: 73, defense: 70, sp_attack: 73, sp_defense: 115, speed: 67 }, sprite_name: "hypno" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 98, name: "Krabby", types: ["Water"], stats: { hp: 30, attack: 105, defense: 90, sp_attack: 25, sp_defense: 25, speed: 50 }, sprite_name: "krabby" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 99, name: "Kingler", types: ["Water"], stats: { hp: 55, attack: 130, defense: 115, sp_attack: 50, sp_defense: 50, speed: 75 }, sprite_name: "kingler" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 100, name: "Voltorb", types: ["Electric"], stats: { hp: 40, attack: 30, defense: 50, sp_attack: 55, sp_defense: 55, speed: 100 }, sprite_name: "voltorb" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 101, name: "Electrode", types: ["Electric"], stats: { hp: 60, attack: 50, defense: 70, sp_attack: 80, sp_defense: 80, speed: 150 }, sprite_name: "electrode" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 102, name: "Exeggcute", types: ["Grass", "Psychic"], stats: { hp: 60, attack: 40, defense: 80, sp_attack: 60, sp_defense: 45, speed: 40 }, sprite_name: "exeggcute" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 103, name: "Exeggutor", types: ["Grass", "Psychic"], stats: { hp: 95, attack: 95, defense: 85, sp_attack: 125, sp_defense: 75, speed: 55 }, sprite_name: "exeggutor" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 104, name: "Cubone", types: ["Ground"], stats: { hp: 50, attack: 50, defense: 95, sp_attack: 40, sp_defense: 50, speed: 35 }, sprite_name: "cubone" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 105, name: "Marowak", types: ["Ground"], stats: { hp: 60, attack: 80, defense: 110, sp_attack: 50, sp_defense: 80, speed: 45 }, sprite_name: "marowak" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 106, name: "Hitmonlee", types: ["Fighting"], stats: { hp: 50, attack: 120, defense: 53, sp_attack: 35, sp_defense: 110, speed: 87 }, sprite_name: "hitmonlee" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 107, name: "Hitmonchan", types: ["Fighting"], stats: { hp: 50, attack: 105, defense: 79, sp_attack: 35, sp_defense: 110, speed: 76 }, sprite_name: "hitmonchan" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 108, name: "Lickitung", types: ["Normal"], stats: { hp: 90, attack: 55, defense: 75, sp_attack: 60, sp_defense: 75, speed: 30 }, sprite_name: "lickitung" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 109, name: "Koffing", types: ["Poison"], stats: { hp: 40, attack: 65, defense: 95, sp_attack: 60, sp_defense: 45, speed: 35 }, sprite_name: "koffing" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 110, name: "Weezing", types: ["Poison"], stats: { hp: 65, attack: 90, defense: 120, sp_attack: 85, sp_defense: 70, speed: 60 }, sprite_name: "weezing" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 111, name: "Rhyhorn", types: ["Ground", "Rock"], stats: { hp: 80, attack: 85, defense: 95, sp_attack: 30, sp_defense: 30, speed: 25 }, sprite_name: "rhyhorn" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 112, name: "Rhydon", types: ["Ground", "Rock"], stats: { hp: 105, attack: 130, defense: 120, sp_attack: 45, sp_defense: 45, speed: 40 }, sprite_name: "rhydon" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 113, name: "Chansey", types: ["Normal"], stats: { hp: 250, attack: 5, defense: 5, sp_attack: 35, sp_defense: 105, speed: 50 }, sprite_name: "chansey" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 114, name: "Tangela", types: ["Grass"], stats: { hp: 65, attack: 55, defense: 115, sp_attack: 100, sp_defense: 40, speed: 60 }, sprite_name: "tangela" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 115, name: "Kangaskhan", types: ["Normal"], stats: { hp: 105, attack: 95, defense: 80, sp_attack: 40, sp_defense: 80, speed: 90 }, sprite_name: "kangaskhan" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 116, name: "Horsea", types: ["Water"], stats: { hp: 30, attack: 40, defense: 70, sp_attack: 70, sp_defense: 25, speed: 60 }, sprite_name: "horsea" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 117, name: "Seadra", types: ["Water"], stats: { hp: 55, attack: 65, defense: 95, sp_attack: 95, sp_defense: 45, speed: 85 }, sprite_name: "seadra" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 118, name: "Goldeen", types: ["Water"], stats: { hp: 45, attack: 67, defense: 60, sp_attack: 35, sp_defense: 50, speed: 63 }, sprite_name: "goldeen" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 119, name: "Seaking", types: ["Water"], stats: { hp: 80, attack: 92, defense: 65, sp_attack: 65, sp_defense: 80, speed: 68 }, sprite_name: "seaking" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 120, name: "Staryu", types: ["Water"], stats: { hp: 30, attack: 45, defense: 55, sp_attack: 70, sp_defense: 55, speed: 85 }, sprite_name: "staryu" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 121, name: "Starmie", types: ["Water", "Psychic"], stats: { hp: 60, attack: 75, defense: 85, sp_attack: 100, sp_defense: 85, speed: 115 }, sprite_name: "starmie" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 122, name: "Mr. Mime", types: ["Psychic", "Fairy"], stats: { hp: 40, attack: 45, defense: 65, sp_attack: 100, sp_defense: 120, speed: 90 }, sprite_name: "mrmime" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 123, name: "Scyther", types: ["Bug", "Flying"], stats: { hp: 70, attack: 110, defense: 80, sp_attack: 55, sp_defense: 80, speed: 105 }, sprite_name: "scyther" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 124, name: "Jynx", types: ["Ice", "Psychic"], stats: { hp: 65, attack: 50, defense: 35, sp_attack: 115, sp_defense: 95, speed: 95 }, sprite_name: "jynx" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 125, name: "Electabuzz", types: ["Electric"], stats: { hp: 65, attack: 83, defense: 57, sp_attack: 95, sp_defense: 85, speed: 105 }, sprite_name: "electabuzz" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 126, name: "Magmar", types: ["Fire"], stats: { hp: 65, attack: 95, defense: 57, sp_attack: 100, sp_defense: 85, speed: 93 }, sprite_name: "magmar" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 127, name: "Pinsir", types: ["Bug"], stats: { hp: 65, attack: 125, defense: 100, sp_attack: 55, sp_defense: 70, speed: 85 }, sprite_name: "pinsir" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 128, name: "Tauros", types: ["Normal"], stats: { hp: 75, attack: 100, defense: 95, sp_attack: 40, sp_defense: 70, speed: 110 }, sprite_name: "tauros" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 129, name: "Magikarp", types: ["Water"], stats: { hp: 20, attack: 10, defense: 55, sp_attack: 15, sp_defense: 20, speed: 80 }, sprite_name: "magikarp" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 130, name: "Gyarados", types: ["Water", "Flying"], stats: { hp: 95, attack: 125, defense: 79, sp_attack: 60, sp_defense: 100, speed: 81 }, sprite_name: "gyarados" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 131, name: "Lapras", types: ["Water", "Ice"], stats: { hp: 130, attack: 85, defense: 80, sp_attack: 85, sp_defense: 95, speed: 60 }, sprite_name: "lapras" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 132, name: "Ditto", types: ["Normal"], stats: { hp: 48, attack: 48, defense: 48, sp_attack: 48, sp_defense: 48, speed: 48 }, sprite_name: "ditto" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 133, name: "Eevee", types: ["Normal"], stats: { hp: 55, attack: 55, defense: 50, sp_attack: 45, sp_defense: 65, speed: 55 }, sprite_name: "eevee" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 134, name: "Vaporeon", types: ["Water"], stats: { hp: 130, attack: 65, defense: 60, sp_attack: 110, sp_defense: 95, speed: 65 }, sprite_name: "vaporeon" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 135, name: "Jolteon", types: ["Electric"], stats: { hp: 65, attack: 65, defense: 60, sp_attack: 110, sp_defense: 95, speed: 130 }, sprite_name: "jolteon" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 136, name: "Flareon", types: ["Fire"], stats: { hp: 65, attack: 130, defense: 60, sp_attack: 95, sp_defense: 110, speed: 65 }, sprite_name: "flareon" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 137, name: "Porygon", types: ["Normal"], stats: { hp: 65, attack: 60, defense: 70, sp_attack: 85, sp_defense: 75, speed: 40 }, sprite_name: "porygon" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 138, name: "Omanyte", types: ["Rock", "Water"], stats: { hp: 35, attack: 40, defense: 100, sp_attack: 90, sp_defense: 55, speed: 35 }, sprite_name: "omanyte" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 139, name: "Omastar", types: ["Rock", "Water"], stats: { hp: 70, attack: 60, defense: 125, sp_attack: 115, sp_defense: 70, speed: 55 }, sprite_name: "omastar" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 140, name: "Kabuto", types: ["Rock", "Water"], stats: { hp: 30, attack: 80, defense: 90, sp_attack: 55, sp_defense: 45, speed: 55 }, sprite_name: "kabuto" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 141, name: "Kabutops", types: ["Rock", "Water"], stats: { hp: 60, attack: 115, defense: 105, sp_attack: 65, sp_defense: 70, speed: 80 }, sprite_name: "kabutops" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 142, name: "Aerodactyl", types: ["Rock", "Flying"], stats: { hp: 80, attack: 105, defense: 65, sp_attack: 60, sp_defense: 75, speed: 130 }, sprite_name: "aerodactyl" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 143, name: "Snorlax", types: ["Normal"], stats: { hp: 160, attack: 110, defense: 65, sp_attack: 65, sp_defense: 110, speed: 30 }, sprite_name: "snorlax" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 144, name: "Articuno", types: ["Ice", "Flying"], stats: { hp: 90, attack: 85, defense: 100, sp_attack: 95, sp_defense: 125, speed: 85 }, sprite_name: "articuno" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 145, name: "Zapdos", types: ["Electric", "Flying"], stats: { hp: 90, attack: 90, defense: 85, sp_attack: 125, sp_defense: 90, speed: 100 }, sprite_name: "zapdos" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 146, name: "Moltres", types: ["Fire", "Flying"], stats: { hp: 90, attack: 100, defense: 90, sp_attack: 125, sp_defense: 85, speed: 90 }, sprite_name: "moltres" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 147, name: "Dratini", types: ["Dragon"], stats: { hp: 41, attack: 64, defense: 45, sp_attack: 50, sp_defense: 50, speed: 50 }, sprite_name: "dratini" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 148, name: "Dragonair", types: ["Dragon"], stats: { hp: 61, attack: 84, defense: 65, sp_attack: 70, sp_defense: 70, speed: 70 }, sprite_name: "dragonair" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 149, name: "Dragonite", types: ["Dragon", "Flying"], stats: { hp: 91, attack: 134, defense: 95, sp_attack: 100, sp_defense: 100, speed: 80 }, sprite_name: "dragonite" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 150, name: "Mewtwo", types: ["Psychic"], stats: { hp: 106, attack: 110, defense: 90, sp_attack: 154, sp_defense: 90, speed: 130 }, sprite_name: "mewtwo" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 151, name: "Mew", types: ["Psychic"], stats: { hp: 100, attack: 100, defense: 100, sp_attack: 100, sp_defense: 100, speed: 100 }, sprite_name: "mew" } // Mew Added!</p>
+<p class="p1"><span class="Apple-converted-space">        </span>];</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// --- Get DOM elements ---</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const pokedexGrid = document.getElementById('pokedex-grid');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const searchBar = document.getElementById('search-bar');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const noResultsMsg = document.getElementById('no-results');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const showAllBtn = document.getElementById('show-all-btn');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const randomBtn = document.getElementById('random-btn');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const baseRegularSpriteUrl = 'https://play.pokemonshowdown.com/sprites/ani/';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const baseShinySpriteUrl = 'https://play.pokemonshowdown.com/sprites/ani-shiny/';</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>let allPokemonCards = []; // Stores references to the card DOM elements</p>
+<p class="p1"><span class="Apple-converted-space">        </span>let activeTypeFilter = null; // Stores the currently selected type filter</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// --- Function to create a single Pokémon card ---</p>
+<p class="p1"><span class="Apple-converted-space">        </span>function createPokemonCard(pokemon) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const card = document.createElement('div');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>card.classList.add('pokemon-card');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>card.dataset.id = String(pokemon.id);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Store raw name and types string for easier filtering</p>
+<p class="p1"><span class="Apple-converted-space">            </span>card.dataset.name = pokemon.name.toLowerCase();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>card.dataset.types = pokemon.types.join(',').toLowerCase(); // e.g., "grass,poison"</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// --- Header ---</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const headerInfo = document.createElement('div');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>headerInfo.classList.add('pokemon-header-info');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const nameElement = document.createElement('h2');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>nameElement.classList.add('pokemon-name');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>nameElement.textContent = pokemon.name;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>headerInfo.appendChild(nameElement);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const idElement = document.createElement('div');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>idElement.classList.add('pokemon-id');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>idElement.textContent = `#${String(pokemon.id).padStart(3, '0')}`;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>headerInfo.appendChild(idElement);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>card.appendChild(headerInfo);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// --- Sprite ---</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const spriteContainer = document.createElement('div');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>spriteContainer.classList.add('pokemon-sprite-container');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const sprite = document.createElement('img');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>sprite.classList.add('pokemon-sprite');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const regularSrc = `${baseRegularSpriteUrl}${pokemon.sprite_name}.gif`;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const shinySrc = `${baseShinySpriteUrl}${pokemon.sprite_name}.gif`;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>sprite.src = regularSrc; sprite.alt = `${pokemon.name}`;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>sprite.dataset.regularSrc = regularSrc; sprite.dataset.shinySrc = shinySrc; sprite.dataset.state = 'regular';</p>
+<p class="p1"><span class="Apple-converted-space">            </span>sprite.loading = 'lazy';</p>
+<p class="p1"><span class="Apple-converted-space">            </span>sprite.onerror = function() { /* Error handler */</p>
+<p class="p1"><span class="Apple-converted-space">                 </span>this.onerror=null; this.src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'; this.alt = `${pokemon.name} (Sprite not found)`; this.style.border = '1px dashed #ccc'; this.style.backgroundColor = '#f8f8f8'; const button = this.nextElementSibling; if(button &amp;&amp; button.classList.contains('shiny-toggle')) { button.disabled = true; button.style.opacity = 0.5; button.style.cursor = 'not-allowed'; }</p>
+<p class="p1"><span class="Apple-converted-space">            </span>};</p>
+<p class="p1"><span class="Apple-converted-space">            </span>spriteContainer.appendChild(sprite);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">             </span>// Shiny Toggle Button</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const shinyButton = document.createElement('button');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>shinyButton.classList.add('shiny-toggle'); shinyButton.textContent = 'Shiny';</p>
+<p class="p1"><span class="Apple-converted-space">            </span>shinyButton.addEventListener('click', (event) =&gt; { /* Shiny toggle logic */</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const button = event.currentTarget; const image = button.previousElementSibling; if (!image || !image.matches('.pokemon-sprite')) { console.error("Could not find sprite image for button", button); return; } if (image.dataset.state === 'regular') { image.src = image.dataset.shinySrc; image.dataset.state = 'shiny'; image.alt = `Shiny ${pokemon.name}`; button.textContent = 'Reg'; button.classList.add('active'); } else { image.src = image.dataset.regularSrc; image.dataset.state = 'regular'; image.alt = `${pokemon.name}`; button.textContent = 'Shiny'; button.classList.remove('active'); }</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p1"><span class="Apple-converted-space">            </span>spriteContainer.appendChild(shinyButton);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>card.appendChild(spriteContainer);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// --- Types ---</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const typesContainer = document.createElement('div');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>typesContainer.classList.add('pokemon-types');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>pokemon.types.forEach(type =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const typeSpan = document.createElement('span');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>typeSpan.textContent = type;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const typeClass = `type-${type.toLowerCase()}`;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>typeSpan.classList.add(typeClass);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>// Add data attribute for easy type extraction on click</p>
+<p class="p1"><span class="Apple-converted-space">                </span>typeSpan.dataset.type = type.toLowerCase();</p>
+<p class="p1"><span class="Apple-converted-space">                </span>typesContainer.appendChild(typeSpan);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p1"><span class="Apple-converted-space">            </span>card.appendChild(typesContainer);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">             </span>// --- Stats ---</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const statsList = document.createElement('ul');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>statsList.classList.add('pokemon-stats');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const statsMap = { 'HP': pokemon.stats.hp, 'Atk': pokemon.stats.attack, 'Def': pokemon.stats.defense, 'Sp.A': pokemon.stats.sp_attack, 'Sp.D': pokemon.stats.sp_defense, 'Spe': pokemon.stats.speed };</p>
+<p class="p1"><span class="Apple-converted-space">            </span>for (const [statName, statValue] of Object.entries(statsMap)) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const statItem = document.createElement('li'); const statNameSpan = document.createElement('span'); const statValueSpan = document.createElement('span'); statNameSpan.textContent = statName; statValueSpan.textContent = statValue; statItem.appendChild(statNameSpan); statItem.appendChild(statValueSpan); statsList.appendChild(statItem);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>card.appendChild(statsList);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>return card;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// --- Function to display Pokémon cards ---</p>
+<p class="p1"><span class="Apple-converted-space">        </span>function displayPokemon(pokemonList) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (!pokedexGrid) return;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>pokedexGrid.innerHTML = ''; // Clear grid</p>
+<p class="p1"><span class="Apple-converted-space">            </span>allPokemonCards = []; // Reset card references</p>
+<p class="p1"><span class="Apple-converted-space">            </span>pokemonList.forEach(pokemon =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>try {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>const card = createPokemonCard(pokemon);</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>pokedexGrid.appendChild(card);</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>allPokemonCards.push(card); // Store reference</p>
+<p class="p1"><span class="Apple-converted-space">                </span>} catch (error) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>console.error(`Error creating card for Pokémon ID ${pokemon.id} (${pokemon.name}):`, error);</p>
+<p class="p1"><span class="Apple-converted-space">                     </span>const errorCard = document.createElement('div'); errorCard.classList.add('pokemon-card'); errorCard.style.backgroundColor = '#ffdddd'; errorCard.textContent = `Error loading ${pokemon.name} (ID: ${pokemon.id}). Check console.`; pokedexGrid.appendChild(errorCard);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p1"><span class="Apple-converted-space">            </span>applyFilters(); // Apply any active filters after display</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// --- Function to apply all active filters (Search + Type) ---</p>
+<p class="p1"><span class="Apple-converted-space">        </span>function applyFilters() {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const searchTerm = searchBar.value.toLowerCase().trim();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>let matchFound = false;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>let isRandomMode = false; // Flag to check if random mode is active</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Check if the grid has only one child and it's visible (potential random mode)</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (pokedexGrid.childElementCount === pokemonData.length) { // Only check if seems like full grid is present</p>
+<p class="p1"><span class="Apple-converted-space">                 </span>const visibleCards = allPokemonCards.filter(card =&gt; !card.classList.contains('hidden'));</p>
+<p class="p1"><span class="Apple-converted-space">                 </span>if (visibleCards.length === 1) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>// It might be random mode, but let's re-apply filters normally</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>// unless specifically triggered by random button. We'll handle</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>// random display separately.</p>
+<p class="p1"><span class="Apple-converted-space">                 </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p2"><br></p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Apply search and type filters</p>
+<p class="p1"><span class="Apple-converted-space">            </span>allPokemonCards.forEach(card =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const name = card.dataset.name;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const id = card.dataset.id;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const types = card.dataset.types; // e.g., "grass,poison"</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>const searchMatch = name.includes(searchTerm) || id.includes(searchTerm);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const typeMatch = !activeTypeFilter || types.includes(activeTypeFilter);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (searchMatch &amp;&amp; typeMatch) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>card.classList.remove('hidden'); // Use class for visibility</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>matchFound = true;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>card.classList.add('hidden');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Update the 'active-filter' class on type spans</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.querySelectorAll('.pokemon-types span').forEach(span =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (activeTypeFilter &amp;&amp; span.dataset.type === activeTypeFilter) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>span.classList.add('active-filter');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>span.classList.remove('active-filter');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p2"><br></p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>noResultsMsg.style.display = matchFound ? 'none' : 'block';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// --- Event Handlers ---</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Search Bar Input</p>
+<p class="p1"><span class="Apple-converted-space">        </span>searchBar.addEventListener('input', applyFilters);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Show All / Clear Filters Button</p>
+<p class="p1"><span class="Apple-converted-space">        </span>showAllBtn.addEventListener('click', () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>searchBar.value = '';<span class="Apple-converted-space">        </span>// Clear search</p>
+<p class="p1"><span class="Apple-converted-space">            </span>activeTypeFilter = null; <span class="Apple-converted-space">    </span>// Clear type filter</p>
+<p class="p1"><span class="Apple-converted-space">            </span>applyFilters();<span class="Apple-converted-space">              </span>// Re-apply (which shows all)</p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Ensure all cards are potentially visible before filtering</p>
+<p class="p1"><span class="Apple-converted-space">            </span>allPokemonCards.forEach(card =&gt; card.classList.remove('hidden'));</p>
+<p class="p1"><span class="Apple-converted-space">            </span>applyFilters(); // Re-apply filters to show all</p>
+<p class="p1"><span class="Apple-converted-space">        </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Random Pokémon Button</p>
+<p class="p1"><span class="Apple-converted-space">        </span>randomBtn.addEventListener('click', () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>searchBar.value = '';<span class="Apple-converted-space">        </span>// Clear search</p>
+<p class="p1"><span class="Apple-converted-space">            </span>activeTypeFilter = null; <span class="Apple-converted-space">    </span>// Clear type filter</p>
+<p class="p1"><span class="Apple-converted-space">            </span>noResultsMsg.style.display = 'none'; // Hide no results message</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>const randomIndex = Math.floor(Math.random() * pokemonData.length);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const randomPokemonId = String(pokemonData[randomIndex].id);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>allPokemonCards.forEach(card =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (card.dataset.id === randomPokemonId) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>card.classList.remove('hidden');</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>card.scrollIntoView({ behavior: 'smooth', block: 'center' }); // Scroll to the card</p>
+<p class="p1"><span class="Apple-converted-space">                </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>card.classList.add('hidden');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Clear active type filter visuals</p>
+<p class="p1"><span class="Apple-converted-space">             </span>document.querySelectorAll('.pokemon-types span.active-filter').forEach(span =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>span.classList.remove('active-filter');</p>
+<p class="p1"><span class="Apple-converted-space">             </span>});</p>
+<p class="p1"><span class="Apple-converted-space">        </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Type Filter Click (Event Delegation)</p>
+<p class="p1"><span class="Apple-converted-space">        </span>pokedexGrid.addEventListener('click', (event) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const clickedTypeSpan = event.target.closest('.pokemon-types span');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (clickedTypeSpan) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const type = clickedTypeSpan.dataset.type;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (activeTypeFilter === type) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>// Optional: Clicking the same type again could clear the filter</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>// activeTypeFilter = null;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>activeTypeFilter = type;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>applyFilters();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// --- Initial Display ---</p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (!pokedexGrid) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>console.error("FATAL ERROR: Could not find element with ID 'pokedex-grid'.");</p>
+<p class="p1"><span class="Apple-converted-space">        </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>console.log("Initializing Pokédex...");</p>
+<p class="p1"><span class="Apple-converted-space">            </span>displayPokemon(pokemonData); // Display all Pokémon initially</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/script&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;/body&gt;</p>
+<p class="p1">&lt;/html&gt;</p>
+</body>
+</html>
